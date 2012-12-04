@@ -7,6 +7,7 @@ class bootstrap
 	
 	function __construct($config)
 	{
+		
 		$this->config=Models_applicationModel::readConfig($config, APPLICATION_ENV);
 		$this->_initSession();
 		$this->_initDatabase();
@@ -59,7 +60,8 @@ class bootstrap
 	function run()
 	{
 		$controller="Controllers_".$this->request['controller']."Controller";
-		$class =  new $controller();
+		$class =  new $controller($this->config); 
+
 		
 		$action=$this->request['action']."Action";
 		$class -> $action();
