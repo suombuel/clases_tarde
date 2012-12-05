@@ -46,7 +46,10 @@ class bootstrap
 			if(file_exists($_SERVER['DOCUMENT_ROOT']."/".APPLICATION_PATH."/controllers/".$_GET['controller']."Controller.php"))
 				$_GET['controller']=$_GET['controller'];
 			else
+			{
 				$_GET['controller']='error';
+				$_GET['action']='error404';
+			}
 		}
 		
 		if(!isset($_GET['action']))

@@ -8,18 +8,16 @@ class Controllers_indexController
 	public function __construct($config)
 	{
 		$this->config=$config;
+		$this->layout=$this->config['layoutFrontend'];
 	}
 	
 	public function indexAction()
 	{
 		
 		$view=new Acl_views();
-
-		$content=$view->renderView($this->config, array(), '/index/index');
-		$params=array('user'=>readUser($cnx, $_SESSION['userid']),
-				'content'=>$content);
-		echo renderLayout($config, $params, 'layout_admin2');
-		
-		
+		$content=$view->renderView($this->config, array(), 'index/index');
+		$params=array('content'=>$content);
+		echo $view->renderLayout($this->config, $params, $this->layout);
 	}
+	
 }
