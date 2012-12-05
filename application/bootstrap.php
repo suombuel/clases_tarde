@@ -34,9 +34,9 @@ class bootstrap
 	protected function _initRequest()
 	{		
 		$url=explode("/",$_SERVER['REQUEST_URI']);
-		if(isset($url[1]))
+		if(isset($url[1]) and $url[1]!='')
 			$_GET['controller']=$url[1];
-		if(isset($url[2]))
+		if(isset($url[2]) and $url[2]!='')
 			$_GET['action']=$url[2];
 	
 		if(!isset($_GET['controller']))
@@ -58,6 +58,7 @@ class bootstrap
 		$this->request=array('controller'=>$_GET['controller'],
 							'action'=>$_GET['action']);
 		
+		_debug($this->request, "request");
 	}
 	
 	function run()
