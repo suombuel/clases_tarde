@@ -6,7 +6,7 @@ class Models_loginModel
 		
 	public function __construct()
 	{
-		$this->cnx=$_SESSION['register']['dbCnx'];;
+		$this->cnx=$_SESSION['register']['dbCnx'];
 	}
 	
 	

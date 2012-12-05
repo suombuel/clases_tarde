@@ -2,7 +2,7 @@
 
 defined('APPLICATION_ENV')?:
 	define ('APPLICATION_ENV', getenv('APPLICATION_ENV'));
-
+	
 defined('APPLICATION_PATH')?:
 	define ('APPLICATION_PATH', '../application');
 

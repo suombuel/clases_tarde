@@ -23,11 +23,7 @@ class bootstrap
 	
 	protected function _initDatabase()
 	{			
-		$cnx=Models_mysqlModel::connect($this->config['database.server'],
-				$this->config['database.db'],
-				$this->config['database.user'],
-				$this->config['database.password']
-		);
+		$cnx=Models_mysqlModel::initialize($this->config);
 		$_SESSION['register']['dbCnx']=$cnx;
 	}
 	

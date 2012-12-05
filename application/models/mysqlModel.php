@@ -2,8 +2,38 @@
 
 class Models_mysqlModel
 {
-
+	public static $obj;
+		
+	public function __construct()
+	{
+		
+	}
+	public static function singleton()
+	{
+		if (!isset(self::$instance)) {
+			$c = __CLASS__;
+			self::$instance = new $c;
+		}
 	
+		return self::$instance;
+	}
+	public static function initialize($config)
+	{
+		if(!isset($obj))
+		{
+			self::obj = self::connect($config['database.server'],
+										$config['database.db'],
+										$config['database.user'],
+										$config['database.password']
+						);
+			return $this->obj;
+		}	
+		else
+		{
+			return $this->obj;
+		}
+			
+	}
 	static function connect($server, $database, $username, $password)
 	{
 		try
@@ -28,12 +58,12 @@ class Models_mysqlModel
 		return $db_connection;
 	}
 	
-	static function disconnet($cnx)
+	public function disconnet($cnx)
 	{
 	
 	}
 	
-	static function query($cnx, $sql)
+	public function query($cnx, $sql)
 	{
 		$arrayQuery=array();
 		try
@@ -66,9 +96,6 @@ class Models_mysqlModel
 	}
 	
 	
-	static function save($cnx, $table, $arrayColumns)
-	{
 	
-	}
 	
 }
