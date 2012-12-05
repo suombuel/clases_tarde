@@ -1,28 +1,33 @@
 <?php 
-
-
-// Inicializa 
-$user=initializeUserArray();
-$filename=$_SERVER['DOCUMENT_ROOT'].$config['users_filename'];
-
-if(!isset($_GET['action']))
-	$action='index';
-else
-	$action=$_GET['action'];
-
-switch($action)
+class Controllers_loginController
 {
-	case 'logout':
-		session_destroy();
-		header("location: /index");
-		exit();		
-	break;
-	case 'login':
-	case 'index':
-	default:
+	protected $config;
+	protected $layout;
+	protected $content;
+	protected $model;
+	protected $cnx;
+
+	public function __construct($config)
+	{
+		$this->config = $config;
+		$this->layout = $this->config['layoutLogin'];
+		$this->view = new Acl_views();
+		$this->content = null;
+		$this->model = new Models_loginModel();		
+	}
+
+	public function indexAction()
+	{
+		
+	}
+	
+	public function loginAction()
+	{
+		_debug($_POST);
+
 		if($_POST)
 		{
-			$loggued=loginUser($cnx, $_POST);
+			$loggued=$this->model->loginUser($_POST);
 			if($loggued)
 			{
 				header("location: /users");
@@ -33,24 +38,27 @@ switch($action)
 				header("location: /login");
 				exit();
 			}
-						
+		
 		}
 		else
 		{
-			$content=renderView($config, array(), '/login/index');
+			$this->content=$this->view->renderView($this->config, array(), '/login/login');
 		}
-		
-	break;
-					
+	}
+	
+	public function logoutAction()
+	{
+		session_destroy();
+		header("location: /index");
+		exit();
+	}
+
+	public function __destruct()
+	{
+		$params=array('content'=>$this->content);
+		echo $this->view->renderLayout($this->config, $params, $this->layout);
+	}
+
 }
-
-// Incluir Layout
-
-echo renderLayout($config, array(), 'layout_login');
-
-
-
-
-
 
 
