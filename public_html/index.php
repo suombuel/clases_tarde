@@ -11,6 +11,7 @@ set_include_path(get_include_path().";".
 				 "/../libs"
 );
 
+
 require("Acl/application.php");
 	
 
@@ -19,3 +20,4 @@ $config=APPLICATION_PATH."/configs/application.ini";
 
 $bootstrap = new bootstrap($config);
 $bootstrap->run();
+

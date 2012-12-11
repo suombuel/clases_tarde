@@ -13,6 +13,7 @@ class Acl_views
 	
 	public function renderLayout($config, array $params, $layout)
 	{
+
 		ob_start();
 		include($config['layout_directory']."/".$layout.".php");
 		// Incluir Layout

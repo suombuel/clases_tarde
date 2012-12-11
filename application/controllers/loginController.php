@@ -35,7 +35,7 @@ class Controllers_loginController
 			}
 			else
 			{
-				header("location: /login");
+				header("location: /login/login");
 				exit();
 			}
 		

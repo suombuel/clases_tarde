@@ -8,6 +8,7 @@ class Controllers_indexController
 	
 	public function __construct($config)
 	{
+
 		$this->config = $config;
 		$this->layout = $this->config['layoutFrontend'];
 		$this->view = new Acl_views();

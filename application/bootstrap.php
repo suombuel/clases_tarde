@@ -7,12 +7,12 @@ class bootstrap
 	
 	function __construct($config)
 	{
-		
+	
 		$this->config=Models_applicationModel::readConfig($config, APPLICATION_ENV);
 		$this->_initSession();
 		$this->_initDatabase();
-		$this->_initRequest();
-
+		$this->_initRequest();	
+		
 	}
 	
 	protected function _initSession()
@@ -23,7 +23,7 @@ class bootstrap
 	
 	protected function _initDatabase()
 	{			
-		$cnx=Models_mysqlModel::initialize($this->config);
+		$cnx=Models_mysqlModel::singleton($this->config);
 		$_SESSION['register']['dbCnx']=$cnx;
 	}
 	
@@ -54,7 +54,6 @@ class bootstrap
 		$this->request=array('controller'=>$_GET['controller'],
 							'action'=>$_GET['action']);
 		
-		_debug($this->request, "request");
 	}
 	
 	function run()

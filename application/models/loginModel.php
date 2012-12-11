@@ -16,7 +16,7 @@ class Models_loginModel
 			FROM users
 			WHERE email='".$data['email']."' AND
 					password='".$data['password']."'";
-		$arrayUser=query($this->cnx,$sql);
+		$arrayUser=$this->cnx->query($sql);
 	
 		if(count($arrayUser)==1)
 		{
